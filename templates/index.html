@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Resume</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="./main.js"></script>
+</head>
+
+<body>
+    <style>
+        .raj-main {
+            list-style-type: none;
+            margin: 0px;
+            padding: 0;
+            overflow: hidden;
+            background-color: #666;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        
+        .raj {
+            float: left;
+            border-right: 1px solid #bbb;
+        }
+        
+        .raj>a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        /* Change the link color to #111 (black) on hover */
+        
+        .raj>a:hover {
+            background-color: #111;
+        }
+        
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+    <ul class="raj-main">
+        <li class="raj active"><a href="{{url_for('index')}}">Home</a></li>
+        {% if 'username' in session %}
+        <li class="raj"><a href="{{url_for('form')}}">Build Resume</a></li>
+        <li class="raj"><a href="#"><button onclick="printdiv()" style="border: none; background: none;color: white;">Print Resume</button></a></li>
+        <li class="raj"><a href="#"> Hi, {{session['username']}}</a></li>
+        <li class="raj"><a href="{{url_for('logout')}}">Logout</a></li>
+        {% else %}
+        <li class="raj"><a href="{{url_for('login')}}">Login</a></li>
+        <li class="raj"><a href="{{url_for('register')}}">Sign Up</a></li>
+        {% endif %}
+    </ul>
+    <br>
+    <br>
+    <br>
+    <div class="main" id="printable-area">
+        <div class="header">
+            <div class="header-left">
+                <h2 class="name">{{ resume.name }}</h2>
+                <div class="addr-main">
+                    <p class="addr">{{ resume.address }}</p>
+                </div>
+                <div class="addr-main">
+                    <span class="inform"><a href="#">• {{resume.email}}</a></span>
+                    <span class="inform">&nbsp;• {{resume.phone}}</span>
+                    <span class="inform"><a href="#">&nbsp;• Linked In</a></span>
+                </div>
+            </div>
+            <!-- <div class="header-right">
+                <img class="picture" src="./191500624.jpg" alt="Raj Picture Here">
+            </div> -->
+        </div>
+        <div class="edu">
+            <h4 class="edu-head">Education</h4>
+            <hr>
+            <ul>
+                <li class="edu-info">
+                    <span class="edu-name">{{resume.coll_name}}</span>
+                    <span class="edu-year">{{resume.coll_year}}</span>
+                </li>
+                <li class="edu-info">
+                    <span class="edu-name">{{resume.inter_name}}</span>
+                    <span class="edu-year">{{resume.inter_year}}</span>
+                </li>
+                <li class="edu-info">
+                    <span class="edu-name">{{resume.high_name}}</span>
+                    <span class="edu-year">{{resume.high_year}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="intern-exp">
+            <h4 class="edu-head">Internship Experience</h4>
+            <hr>
+            <ul>
+                <li class="intern-info">
+                    <span class="edu-name"><strong>{{resume.intern_name1}}</strong></span>
+                    <span class="edu-year">{{resume.intern_date1}}</span>
+                    <br>
+                    <span>{{resume.posi_name1}}</span><br>
+                    <span>&nbsp;&nbsp;&nbsp;• {{resume.exp1}}</span>
+
+                </li>
+                <li class="intern-info">
+                    <span class="edu-name"><strong>{{resume.intern_name2}}</strong></span>
+                    <span class="edu-year">{{resume.intern_date2}}</span>
+                    <br>
+                    <span>{{resume.posi_name2}}</span><br>
+                    <span>&nbsp;&nbsp;&nbsp;• {{resume.exp2}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="proj">
+            <h4 class="edu-head">Projects</h4>
+            <hr>
+            <ul>
+                <li class="proj-info">
+                    <span class="edu-name"><strong>{{resume.proj_name1}}</strong></span>
+                    <span class="edu-year">{{resume.proj_date1}}</span>
+                    <br>
+                    <span>&nbsp;&nbsp;&nbsp;• {{resume.info1}}</span>
+                </li>
+                <li class="proj-info">
+                    <span class="edu-name"><strong>{{resume.proj_name2}}</strong></span>
+                    <span class="edu-year">{{resume.proj_date2}}</span>
+                    <br>
+                    <span>&nbsp;&nbsp;&nbsp;• {{resume.info2}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="skills">
+            <h4 class="edu-head">Skills</h4>
+            <hr>
+            <strong>Technical</strong>
+            <ul>
+                <li>{{resume.skill1}}</li>
+                <li>{{resume.skill2}}</li>
+                <li>{{resume.skill3}}</li>
+                <li>{{resume.skill4}}</li>
+                <li>{{resume.skill5}}</li>
+            </ul>
+            <strong>Professional</strong>
+            <ul>
+                <li>{{resume.skill6}}</li>
+                <li>{{resume.skill7}}</li>
+                <li>{{resume.skill8}}</li>
+                <li>{{resume.skill9}}</li>
+            </ul>
+        </div>
+        <div class="extra">
+            <h4 class="edu-head">Extra Curricular</h4>
+            <hr>
+            <ul>
+                <li>{{resume.skill10}}</li>
+                <li>{{resume.skill11}}</li>
+            </ul>
+        </div>
+        <div class="declation">
+            <h4 class="edu-head">Declaration</h4>
+            <hr>
+            <ul>
+                <li>I hereby declare that the information given above is true to the best of my knowledge and belief.</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function printdiv() {
+            var printContents = document.getElementById("printable-area").innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+</body>
+
+</html>

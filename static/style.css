@@ -1,0 +1,67 @@
+body {
+    margin: 0px;
+}
+
+.header-right {
+    float: right;
+    margin-top: -100px;
+    margin-right: 30px;
+    border: 3px solid rgb(53, 135, 223);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.edu-head {
+    color: rgb(53, 135, 223);
+    margin-top: 1px;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+}
+
+.name {
+    text-transform: uppercase;
+    color: rgb(53, 135, 223);
+    font-size: 1.5em;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.addr {
+    float: left;
+}
+
+.addr-main {
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+}
+
+.address {
+    display: block;
+    text-align: center;
+}
+
+.info {
+    display: block;
+    margin-left: 28%;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    margin-top: 0px;
+    float: right;
+    height: 80px;
+    width: 80px;
+}
+
+.edu-year {
+    display: block;
+    float: right;
+    margin-right: 20px;
+}
